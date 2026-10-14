@@ -1,0 +1,291 @@
+1
+00:00:00,000 --> 00:00:06,628
+Welcome to RydeResolve, a multi-agent dispute resolution prototype for the Ryde Digital Native challenge.
+
+2
+00:00:06,628 --> 00:00:13,757
+Riders and drivers can report a problem, inspect the supporting evidence, and understand a recommended outcome.
+
+3
+00:00:13,757 --> 00:00:22,271
+Rumi, our friendly guide, keeps the experience approachable while the backend handles calculations, policy checks, and audit recording.
+
+4
+00:00:22,271 --> 00:00:28,890
+This video shows the working interface, the core agents, and the design decisions behind the prototype.
+
+5
+00:00:28,890 --> 00:00:32,789
+A ride dispute is rarely just a question about a refund.
+
+6
+00:00:32,789 --> 00:00:40,465
+Support teams may need to compare trip records, messages, payments, photos, receipts, and two different accounts of what happened.
+
+7
+00:00:40,465 --> 00:00:47,202
+RydeResolve organizes that information into a shared case, then makes the evidence and policy basis visible.
+
+8
+00:00:47,202 --> 00:00:55,788
+The intended value is faster standard-case handling, consistent policy application, and explanations that customers can understand.
+
+9
+00:00:55,788 --> 00:01:02,835
+These benefits would need production evaluation; we are not claiming measured savings or real-world accuracy gains.
+
+10
+00:01:02,835 --> 00:01:07,017
+The demonstration covers the four categories named in the handbook.
+
+11
+00:01:07,017 --> 00:01:13,171
+They are Route Deviation, No-Show Charge, Property Damage or Mess, and Safety Incident.
+
+12
+00:01:13,171 --> 00:01:19,043
+Each category has two examples: one reported by a rider and one reported by a driver.
+
+13
+00:01:19,043 --> 00:01:24,290
+That gives eight cases, labelled A through H, in the existing case list.
+
+14
+00:01:24,290 --> 00:01:31,333
+The cases demonstrate refunds, justified fees, cleaning-cost recommendations, and bounded conduct remedies.
+
+15
+00:01:31,333 --> 00:01:36,052
+To report a dispute, open Submit your dispute at the top of the page.
+
+16
+00:01:36,052 --> 00:01:41,983
+Choose whether you are reporting as a rider or driver, then select the category you want to report.
+
+17
+00:01:41,983 --> 00:01:48,606
+The category is independent of the trip selection; changing the trip does not silently replace your choice.
+
+18
+00:01:48,606 --> 00:01:52,524
+Describe what happened and optionally provide the amount disputed.
+
+19
+00:01:52,524 --> 00:01:59,443
+If the selected trip lacks the relevant records, the system keeps your category and explains what evidence is still needed.
+
+20
+00:01:59,443 --> 00:02:06,978
+The optional evidence controls accept pictures, receipt images, readable text files, and audio recordings.
+
+21
+00:02:06,978 --> 00:02:11,319
+There is also a browser control for recording a short audio clip.
+
+22
+00:02:11,319 --> 00:02:19,446
+The backend validates file types and size limits, extracts text from text files, and records file hashes and metadata.
+
+23
+00:02:19,446 --> 00:02:23,950
+An upload alone does not establish authenticity or responsibility.
+
+24
+00:02:23,950 --> 00:02:31,872
+In the current simulated mode, images are received without visual analysis, and audio is received without automatic transcription.
+
+25
+00:02:31,872 --> 00:02:34,946
+The interface states these limits directly.
+
+26
+00:02:34,946 --> 00:02:39,980
+The architecture has three core agent roles, supported by an orchestrator.
+
+27
+00:02:39,980 --> 00:02:46,403
+The Rider Advocate and Driver Advocate run in parallel against the same evidence ledger and applicable policies.
+
+28
+00:02:46,403 --> 00:02:52,602
+Each presents its position, requested remedy, evidence references, and uncertainties.
+
+29
+00:02:52,602 --> 00:02:57,540
+The Judge receives both cases and returns a structured ruling with an explanation.
+
+30
+00:02:57,540 --> 00:03:05,293
+Backend checks validate citations, constrain monetary remedies, and apply a review gate before the recommendation is shown.
+
+31
+00:03:05,293 --> 00:03:10,427
+In Case A, the rider says the driver took a longer route and charged too much.
+
+32
+00:03:10,427 --> 00:03:16,471
+The backend compares the actual distance with the expected distance and accounts for the allowed traffic adjustment.
+
+33
+00:03:16,471 --> 00:03:23,177
+The remaining unexplained deviation is twelve point one seven percent, above the example policy threshold.
+
+34
+00:03:23,177 --> 00:03:27,285
+The calculated fare difference is one dollar and forty-eight cents.
+
+35
+00:03:27,285 --> 00:03:34,082
+Both advocates are heard, and the judge recommends refunding that verified difference within the illustrative case records.
+
+36
+00:03:34,082 --> 00:03:38,154
+The expandable decision process shows how the result was reached.
+
+37
+00:03:38,154 --> 00:03:45,884
+It includes the complaint, fare calculation, route adjustment, retrieved policies, both advocates, and the judge's comparison.
+
+38
+00:03:45,884 --> 00:03:52,768
+These are recorded calculations and decision summaries, not a claim to expose a model's private internal reasoning.
+
+39
+00:03:52,768 --> 00:03:59,355
+Rumi also answers why the decision was made, how both sides were considered, and what happens next.
+
+40
+00:03:59,355 --> 00:04:04,297
+Customers can see the main outcome first and inspect the details when they want them.
+
+41
+00:04:04,297 --> 00:04:08,200
+A longer route does not automatically mean the driver was wrong.
+
+42
+00:04:08,200 --> 00:04:14,737
+Case B contains a justified road-closure detour, so the original fare stays the same with no refund.
+
+43
+00:04:14,737 --> 00:04:21,689
+For pickup disputes, Case C refunds the cancellation fee because the driver did not reach the pickup zone.
+
+44
+00:04:21,689 --> 00:04:27,916
+Case D supports the driver's report: arrival and a seven-minute wait meet the five-minute waiting rule.
+
+45
+00:04:27,916 --> 00:04:32,466
+The cancellation fee is therefore not refunded under the example policy.
+
+46
+00:04:32,466 --> 00:04:36,971
+The cleaning cases show why evidence matters more than who files the report.
+
+47
+00:04:36,971 --> 00:04:42,105
+In Case E, the supplied photo metadata links the spill image to another trip.
+
+48
+00:04:42,105 --> 00:04:47,535
+The judge rejects the cleaning claim and recommends refunding the already charged thirty dollars.
+
+49
+00:04:47,535 --> 00:04:56,454
+In Case F, the sample photo records match the trip, the rider acknowledges the spill, and a receipt supports forty dollars in cleaning costs.
+
+50
+00:04:56,454 --> 00:05:00,909
+The judge approves the documented amount within the example policy cap.
+
+51
+00:05:00,909 --> 00:05:05,018
+These media records are clearly labelled illustrative demo evidence.
+
+52
+00:05:05,018 --> 00:05:10,489
+The safety examples focus on corroborated, non-threatening conduct complaints.
+
+53
+00:05:10,489 --> 00:05:17,740
+Case G uses a sample transcript and the driver's acknowledgement to support the rider's complaint about disrespectful language.
+
+54
+00:05:17,740 --> 00:05:21,794
+The recommendation is an apology and a five-dollar service credit.
+
+55
+00:05:21,794 --> 00:05:28,864
+Case H supports a driver's report of abusive rider language and recommends a conduct reminder and avoiding future pairing.
+
+56
+00:05:28,864 --> 00:05:35,460
+Threats, physical danger, conflicting evidence, or unverified allegations still require human review.
+
+57
+00:05:35,460 --> 00:05:39,719
+The demo does not impose account sanctions or process payments.
+
+58
+00:05:39,719 --> 00:05:48,005
+Technical details expose the evidence ledger, agent responses, policy citations, execution modes, and recorded audit events.
+
+59
+00:05:48,005 --> 00:05:53,831
+The readiness score is a rule-based signal, not a measured probability that the decision is correct.
+
+60
+00:05:53,831 --> 00:05:58,582
+The public deployment currently uses simulated structured agent responses.
+
+61
+00:05:58,582 --> 00:06:04,854
+Evidence calculations, citation checks, monetary limits, and audit recording run in the backend.
+
+62
+00:06:04,854 --> 00:06:15,131
+A provider adapter supports live model calls, image inputs, and optional audio transcription when configured, but no provider credentials were added for this deployment.
+
+63
+00:06:15,131 --> 00:06:22,761
+The build approach starts with deterministic evidence rules and clear policy boundaries, then adds agent roles around a shared ledger.
+
+64
+00:06:22,761 --> 00:06:28,409
+The interface was refined to show a simple outcome first and expandable technical detail below.
+
+65
+00:06:28,409 --> 00:06:35,912
+A useful tip when working with CodeBuddy or WorkBuddy is to request one focused change at a time and specify the expected behavior.
+
+66
+00:06:35,912 --> 00:06:44,712
+Keep calculations and policy limits separate from generated arguments, then test missing records and conflicting evidence as well as successful cases.
+
+67
+00:06:44,712 --> 00:06:51,964
+Genuine development conversation screenshots should accompany the submission; this walkthrough does not replace that evidence.
+
+68
+00:06:51,964 --> 00:06:58,191
+Validation includes sixty-eight passing automated tests and checks of the deployed API and interface.
+
+69
+00:06:58,191 --> 00:07:06,363
+The complete illustrative cases produce automatic recommendations, while separate tests retain review for missing evidence and serious risk.
+
+70
+00:07:06,363 --> 00:07:15,314
+The next production steps are connecting trusted trip records, approving real company policies, and configuring and evaluating a live model provider.
+
+71
+00:07:15,314 --> 00:07:19,655
+You can try the project at ryderesolve-five dot vercel dot app.
+
+72
+00:07:19,655 --> 00:07:27,331
+RydeResolve brings both sides into one transparent process, with evidence, policy, and a recommendation people can inspect.
+
+73
+00:07:27,331 --> 00:07:30,000
+Thank you for reviewing the project.

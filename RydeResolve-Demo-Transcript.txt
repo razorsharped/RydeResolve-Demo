@@ -1,0 +1,100 @@
+00:00:00.000  RydeResolve · a fairer ride
+Welcome to RydeResolve, a multi-agent dispute resolution prototype for the Ryde Digital Native challenge.
+Riders and drivers can report a problem, inspect the supporting evidence, and understand a recommended outcome.
+Rumi, our friendly guide, keeps the experience approachable while the backend handles calculations, policy checks, and audit recording.
+This video shows the working interface, the core agents, and the design decisions behind the prototype.
+
+00:00:28.890  The problem and intended value
+A ride dispute is rarely just a question about a refund.
+Support teams may need to compare trip records, messages, payments, photos, receipts, and two different accounts of what happened.
+RydeResolve organizes that information into a shared case, then makes the evidence and policy basis visible.
+The intended value is faster standard-case handling, consistent policy application, and explanations that customers can understand.
+These benefits would need production evaluation; we are not claiming measured savings or real-world accuracy gains.
+
+00:01:02.835  Four categories · eight examples
+The demonstration covers the four categories named in the handbook.
+They are Route Deviation, No-Show Charge, Property Damage or Mess, and Safety Incident.
+Each category has two examples: one reported by a rider and one reported by a driver.
+That gives eight cases, labelled A through H, in the existing case list.
+The cases demonstrate refunds, justified fees, cleaning-cost recommendations, and bounded conduct remedies.
+
+00:01:31.333  Report a dispute
+To report a dispute, open Submit your dispute at the top of the page.
+Choose whether you are reporting as a rider or driver, then select the category you want to report.
+The category is independent of the trip selection; changing the trip does not silently replace your choice.
+Describe what happened and optionally provide the amount disputed.
+If the selected trip lacks the relevant records, the system keeps your category and explains what evidence is still needed.
+
+00:01:59.443  Add supporting evidence
+The optional evidence controls accept pictures, receipt images, readable text files, and audio recordings.
+There is also a browser control for recording a short audio clip.
+The backend validates file types and size limits, extracts text from text files, and records file hashes and metadata.
+An upload alone does not establish authenticity or responsibility.
+In the current simulated mode, images are received without visual analysis, and audio is received without automatic transcription.
+The interface states these limits directly.
+
+00:02:34.946  How the three agents work
+The architecture has three core agent roles, supported by an orchestrator.
+The Rider Advocate and Driver Advocate run in parallel against the same evidence ledger and applicable policies.
+Each presents its position, requested remedy, evidence references, and uncertainties.
+The Judge receives both cases and returns a structured ruling with an explanation.
+Backend checks validate citations, constrain monetary remedies, and apply a review gate before the recommendation is shown.
+
+00:03:05.293  Case A · refund the excess fare
+In Case A, the rider says the driver took a longer route and charged too much.
+The backend compares the actual distance with the expected distance and accounts for the allowed traffic adjustment.
+The remaining unexplained deviation is twelve point one seven percent, above the example policy threshold.
+The calculated fare difference is one dollar and forty-eight cents.
+Both advocates are heard, and the judge recommends refunding that verified difference within the illustrative case records.
+
+00:03:34.082  Inspect the decision process
+The expandable decision process shows how the result was reached.
+It includes the complaint, fare calculation, route adjustment, retrieved policies, both advocates, and the judge's comparison.
+These are recorded calculations and decision summaries, not a claim to expose a model's private internal reasoning.
+Rumi also answers why the decision was made, how both sides were considered, and what happens next.
+Customers can see the main outcome first and inspect the details when they want them.
+
+00:04:04.297  Cases B–D · fair decisions for both sides
+A longer route does not automatically mean the driver was wrong.
+Case B contains a justified road-closure detour, so the original fare stays the same with no refund.
+For pickup disputes, Case C refunds the cancellation fee because the driver did not reach the pickup zone.
+Case D supports the driver's report: arrival and a seven-minute wait meet the five-minute waiting rule.
+The cancellation fee is therefore not refunded under the example policy.
+
+00:04:32.466  Cases E–F · photo records and receipts
+The cleaning cases show why evidence matters more than who files the report.
+In Case E, the supplied photo metadata links the spill image to another trip.
+The judge rejects the cleaning claim and recommends refunding the already charged thirty dollars.
+In Case F, the sample photo records match the trip, the rider acknowledges the spill, and a receipt supports forty dollars in cleaning costs.
+The judge approves the documented amount within the example policy cap.
+These media records are clearly labelled illustrative demo evidence.
+
+00:05:05.018  Cases G–H · standard conduct complaints
+The safety examples focus on corroborated, non-threatening conduct complaints.
+Case G uses a sample transcript and the driver's acknowledgement to support the rider's complaint about disrespectful language.
+The recommendation is an apology and a five-dollar service credit.
+Case H supports a driver's report of abusive rider language and recommends a conduct reminder and avoiding future pairing.
+Threats, physical danger, conflicting evidence, or unverified allegations still require human review.
+The demo does not impose account sanctions or process payments.
+
+00:05:39.719  Auditability and honest AI status
+Technical details expose the evidence ledger, agent responses, policy citations, execution modes, and recorded audit events.
+The readiness score is a rule-based signal, not a measured probability that the decision is correct.
+The public deployment currently uses simulated structured agent responses.
+Evidence calculations, citation checks, monetary limits, and audit recording run in the backend.
+A provider adapter supports live model calls, image inputs, and optional audio transcription when configured, but no provider credentials were added for this deployment.
+
+00:06:15.131  Build approach and development-tool tips
+The build approach starts with deterministic evidence rules and clear policy boundaries, then adds agent roles around a shared ledger.
+The interface was refined to show a simple outcome first and expandable technical detail below.
+A useful tip when working with CodeBuddy or WorkBuddy is to request one focused change at a time and specify the expected behavior.
+Keep calculations and policy limits separate from generated arguments, then test missing records and conflicting evidence as well as successful cases.
+Genuine development conversation screenshots should accompany the submission; this walkthrough does not replace that evidence.
+
+00:06:51.964  Try RydeResolve
+Validation includes sixty-eight passing automated tests and checks of the deployed API and interface.
+The complete illustrative cases produce automatic recommendations, while separate tests retain review for missing evidence and serious risk.
+The next production steps are connecting trusted trip records, approving real company policies, and configuring and evaluating a live model provider.
+You can try the project at ryderesolve-five dot vercel dot app.
+RydeResolve brings both sides into one transparent process, with evidence, policy, and a recommendation people can inspect.
+Thank you for reviewing the project.
