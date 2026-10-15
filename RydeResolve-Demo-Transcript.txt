@@ -1,4 +1,4 @@
-00:00:00.000  RydeResolve · a fairer ride
+00:00:00.000  A fairer ride
 Welcome to RydeResolve, a multi-agent dispute resolution prototype for the Ryde Digital Native challenge.
 Riders and drivers can report a problem, inspect the supporting evidence, and understand a recommended outcome.
 Rumi, our friendly guide, keeps the experience approachable while the backend handles calculations, policy checks, and audit recording.
